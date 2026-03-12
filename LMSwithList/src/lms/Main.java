@@ -11,8 +11,8 @@ public class Main {
 
         Library lib = new Library();
 
-        lib.addBook(new Book(1, "Learn Designing", "ABC", 499, 2));
-        lib.addBook(new Book(2, "Learn Java", "XYZ", 799, 1));
+//        lib.addBook(new Book(1, "Learn Designing", "ABC", 499, 2));
+//        lib.addBook(new Book(2, "Learn Java", "XYZ", 799, 1));
 
         while (true) {
             printMenu();
