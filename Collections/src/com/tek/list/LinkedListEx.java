@@ -6,7 +6,10 @@ public class LinkedListEx {
 		List<String> cities = createListOfCities();
 		defensiveDownCasting(cities);
 		System.out.println(cities.contains("Chennai"));
-//		System.out.println(cities);
+//		System.out.println(cities.remove("Delhi"));
+		System.out.println(cities.lastIndexOf("Delhi"));
+		System.out.println(cities.set(0, "Chennai")); //sets a value to the provided index
+		System.out.println(cities);
 	}
 
 	private static void defensiveDownCasting(List<String> cities) {
@@ -18,6 +21,7 @@ public class LinkedListEx {
 
 	private static List<String> createListOfCities() {
 		List<String> cities = new ArrayList<>();
+		cities.add("Delhi");
 		cities.add("Delhi");
 		cities.add("Mumbai");
 		cities.add("Bangalore");
