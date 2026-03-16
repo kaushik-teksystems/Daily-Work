@@ -1,14 +1,42 @@
 package lms;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.List;
 
 class Library {
 
 	private List<Book> books = new ArrayList<>();
+	public void readBooks() {
+		try {
+			BufferedReader reader = new BufferedReader(new FileReader("book_list.txt"));
+			String line;
+			while((line = reader.readLine())!= null) {
+				System.out.println(line);
+			}
+		} catch (Exception e) {
+			System.out.println("Can't read because of unavailability or different format.");
+		}
+	}
 
 	public void add(String id, String title, float price, String author) {
 		books.add(new Book(id, title, price, author));
+		try {
+			BufferedWriter writeDetails = new BufferedWriter(new FileWriter("book_list.txt", true));
+			for(Book book: books) {
+				writeDetails.write(id+",");
+				writeDetails.write(title+",");
+				writeDetails.write(author+",");
+				String priceString = String.valueOf(price);
+				writeDetails.write(priceString);
+				writeDetails.flush();
+			}
+		} catch (Exception e) {
+			System.out.println("Nothing to add to te book_list");
+		}
 		System.out.println("Book added successfully.");
 	}
 
