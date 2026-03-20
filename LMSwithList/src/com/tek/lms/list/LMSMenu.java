@@ -1,4 +1,4 @@
-package lms;
+package com.tek.lms.list;
 
 import java.util.List;
 import java.util.Scanner;

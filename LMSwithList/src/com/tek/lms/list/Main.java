@@ -1,4 +1,4 @@
-package lms;
+package com.tek.lms.list;
 
 public class Main {
     public static void main(String[] args) {

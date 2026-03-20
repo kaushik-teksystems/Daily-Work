@@ -1,11 +1,12 @@
-package lms;
+package com.tek.lms.list;
 
+import static com.tek.lms.list.ValidationUtils.*;
 import java.util.ArrayList;
 import java.util.List;
 
 class Library {
 
-	private List<Book> books = new ArrayList<>();
+	List<Book> books = new ArrayList<>();
 
 	public void add(String id, String title, float price, String author) {
 		books.add(new Book(id, title, price, author));
@@ -13,6 +14,9 @@ class Library {
 	}
 
 	public void reserve(String title) throws BookNotAvailableException {
+		if (!validateStringInput(title)) {
+			throw new IllegalArgumentException("Invalid Book Title type");
+		}
 		for (Book book : books) {
 			if (book.getTitle().equalsIgnoreCase(title) && book.getStatus() == BookStatus.AVAILABLE) {
 
@@ -28,13 +32,13 @@ class Library {
 	}
 
 	public Book remove(String id) throws BookNotAvailableException {
-		for (Book b : books) {
-			if (b.getId().equalsIgnoreCase(id)) {
-				books.remove(b);
+		for (Book book : books) {
+			if (book.getId().equalsIgnoreCase(id)) {
+				books.remove(book);
 				System.out.println("""
 						Removed: %s
-						""".formatted(b.getTitle()));
-				return b;
+						""".formatted(book.getTitle()));
+				return book;
 			}
 		}
 		throw new BookNotAvailableException("No book found for ID: " + id);
@@ -93,9 +97,9 @@ class Library {
 				""");
 
 		for (Book b : books) {
-				if (b.getStatus() == BookStatus.AVAILABLE) {
-					System.out.println(b);
-				}
+			if (b.getStatus() == BookStatus.AVAILABLE) {
+				System.out.println(b);
+			}
 		}
 	}
 
