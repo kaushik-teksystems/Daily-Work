@@ -1,4 +1,5 @@
 package com.tek.lms.list;
+
 import static com.tek.lms.list.ValidationUtils.*;
 
 class Book {
@@ -10,10 +11,10 @@ class Book {
 	private BookStatus status;
 
 	public Book(String id, String title, float price, String author) {
-		if(!validateStringInput(id) || !validateStringInput(title) || !validateStringInput(author)) {
+		if (!validateStringInput(id) || !validateStringInput(title) || !validateStringInput(author)) {
 			throw new IllegalArgumentException("Invalid Argument.");
 		}
-		if(!validateNumericInput(price))
+		if (!validateNumericInput(price))
 			throw new IllegalArgumentException("Invalid Argument");
 		this.id = id;
 		this.title = title;
