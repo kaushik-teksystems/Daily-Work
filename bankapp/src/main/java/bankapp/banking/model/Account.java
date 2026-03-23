@@ -1,7 +1,5 @@
 package bankapp.banking.model;
 
-import bankapp.banking.exception.BankingException;
-
 public class Account {
 
 	private int accountNumber;
@@ -18,25 +16,19 @@ public class Account {
 		return accountNumber;
 	}
 
-	public String getHolderName() {
-		return holderName;
-	}
-
 	public double getBalance() {
 		return balance;
 	}
 
 	public void deposit(double amount) {
 		if (amount <= 0)
-			throw new BankingException("Deposit must be positive");
+			throw new IllegalArgumentException("Invalid deposit");
 		balance += amount;
 	}
 
 	public void withdraw(double amount) {
-		if (amount <= 0)
-			throw new BankingException("Withdrawal must be positive");
 		if (amount > balance)
-			throw new BankingException("Insufficient balance");
+			throw new IllegalArgumentException("Insufficient balance");
 		balance -= amount;
 	}
 }
