@@ -1,8 +1,0 @@
-Mar 23, 2026 3:58:53 PM com.tek.logFileAnalyzer.GenerateLogs main
-INFO: Application Started
-Mar 23, 2026 3:58:53 PM com.tek.logFileAnalyzer.GenerateLogs main
-SEVERE: DB Connection Failed
-Mar 23, 2026 3:58:53 PM com.tek.logFileAnalyzer.GenerateLogs main
-WARNING: Low Memory Detected
-Mar 23, 2026 3:58:53 PM com.tek.logFileAnalyzer.GenerateLogs main
-SEVERE: Disk Space Full
