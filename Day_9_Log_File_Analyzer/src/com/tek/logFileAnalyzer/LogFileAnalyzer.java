@@ -1,37 +1,30 @@
 package com.tek.logFileAnalyzer;
 
-import java.io.File;
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
-import java.util.logging.FileHandler;
-import java.util.logging.Logger;
-import java.util.logging.SimpleFormatter;
+import java.util.HashMap;
+import java.util.Map;
 
-public class GenerateLogs {
-	private static final Logger logger = Logger.getLogger("LogFile");
-
+public class LogFileAnalyzer {
 	public static void main(String[] args) {
-		try {
-			File logDir = new File("logs");
-			if (!logDir.exists())
-				logDir.mkdir();
-			FileHandler fh = new FileHandler("logs/app.log", true);
-			logger.addHandler(fh);
+		String fileName = "logs.txt";
+		Map<String, Integer> logCounts = new HashMap<>();
 
-			// 3. Simple formatting (so it's readable)
-			SimpleFormatter formatter = new SimpleFormatter();
-			fh.setFormatter(formatter);
+		try (BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName))) {
+			String line;
+			while ((line = bufferedReader.readLine()) != null) {
+				if (line.contains(":")) {
+					String key = line.split(":")[0].trim().toUpperCase();
+					logCounts.put(key, logCounts.getOrDefault(key, 0) + 1);
+				}
+			}
 
-			// 4. Generate Logs
-			logger.info("Application Started");
-			logger.severe("DB Connection Failed");
-			logger.warning("Low Memory Detected");
-			logger.severe("Disk Space Full");
+			System.out.println("Log Count Statistics:");
+			logCounts.forEach((key, count) -> System.out.println(key + " count: " + count));
 
-			System.out.println("Logs generated in logs/app.log");
-
-		} catch (IOException | SecurityException e) {
-			e.printStackTrace();
+		} catch (IOException e) {
+			System.err.println("Error: Could not read file '" + fileName + "'. Please ensure the file exists.");
 		}
 	}
-
 }
