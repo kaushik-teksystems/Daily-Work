@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>ToDo App</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <h2>ToDo App</h2>
+
+        <div class="input-group">
+            <input type="text" id="todo-input" placeholder="What needs to be done?">
+
+            <input type="number" id="todo-time-required" placeholder="Time required in Hours">
+
+            <button class="add-btn" onclick="addTodo()">Add</button>
+        </div>
+
+        <div class="urgency-selector">
+            <label><input type="radio" name="urgency" value="Urgent" checked>Urgent</label>
+            <label><input type="radio" name="urgency" value="standard">Standard</label>
+        </div>
+
+        <div class="list-section">
+            <label>Current Tasks</label>
+            <ul id="todo-list"></ul>
+        </div>
+    </div>
+    <script src="app.js"></script>
+</body>
+
+</html>

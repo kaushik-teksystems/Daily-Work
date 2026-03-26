@@ -5,14 +5,19 @@ function saveTodos() {
 }
 
 function addTodo() {
-    const input = document.getElementById('todo-input');
-    const text = input.value.trim();
+    const input1 = document.getElementById('todo-input');
+    const task = input1.value.trim();
 
-    if (text == '') return;
+    const input2 = document.getElementById('todo-time-required');
+    const timeRequired = input2.value.trim();
 
-    todos.push({ text, completed: false });
+    if (task == '') return;
+    if (timeRequired == '') return;
 
-    input.value = '';
+    todos.push({ text: task, timeRequired, completed: false });
+
+    input1.value = '';
+    input2.value = '';
     saveTodos();
     renderTodos();
 }
@@ -39,13 +44,19 @@ function renderTodos() {
         if (todo.completed) li.classList.add('completed');
 
         li.innerHTML = `
-        <span>${todo.text}</span>
         <div>
-            <button onclick = "toggleComplete(${index})">✔</button>
-            <button onclick = "deleteTodo(${index})">✕</button>
+            <span style="display:block; font-weight:600;">${todo.text}</span>
+            <span style="font-size:12px; color:#666;">${todo.timeRequired} hours</span>
+            
+        </div>
+        <div>
+            <button class="tick-btn" onclick="toggleComplete(${index})">✔</button>
+            <button class="delete-btn" onclick="deleteTodo(${index})">✕</button>
         </div>
         `;
 
         list.appendChild(li);
     });
 }
+
+renderTodos();
