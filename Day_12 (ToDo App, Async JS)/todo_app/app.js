@@ -1,19 +1,34 @@
 let todos = JSON.parse(localStorage.getItem('todos')) || [];
 
+renderTodos();
+
+document.getElementById('todo-input').addEventListener('input', (e) => e.target.setCustomValidity(""));
+document.getElementById('todo-time-required').addEventListener('input', (e) => e.target.setCustomValidity(""));
+
 function saveTodos() {
     localStorage.setItem('todos', JSON.stringify(todos))
 }
 
 function addTodo() {
     const input1 = document.getElementById('todo-input');
-    const task = input1.value.trim();
-
     const input2 = document.getElementById('todo-time-required');
+    
+    const task = input1.value.trim();
     const timeRequired = input2.value.trim();
 
+     if (task === '') {
+        input1.setCustomValidity("Please enter a valid task name.");
+        input1.reportValidity();
+        return;
+    }
+
+    if (timeRequired === '' || parseFloat(timeRequired) < 0) {
+        input2.setCustomValidity(timeRequired === '' ? "Please enter time." : "Time can't be negative.");
+        input2.reportValidity();
+        return;
+    }
+
     const urgency = document.querySelector('input[name="urgency"]:checked').value;
-    
-    if (task === '' || timeRequired === '') return;
 
     todos.push({ text: task, timeRequired, urgency, completed: false });
 
@@ -66,11 +81,7 @@ function renderTodos() {
 renderTodos();
 
 function sort(){
-    todos.sort((e1,e2) => {
-        const e1_text = e1.text.toLowerCase();
-        const e2_text = e2.text.toLowerCase();
-
-        return e1_text.localeCompare(e2_text);
-    });
+    todos.sort((a, b) => a.text.toLowerCase().localeCompare(b.text.toLowerCase()));
+    saveTodos(); 
     renderTodos();
 }

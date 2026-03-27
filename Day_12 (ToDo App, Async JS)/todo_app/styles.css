@@ -31,7 +31,7 @@ h2 {
 input {
     padding: 10px;
     border: 1px solid #ddd;
-    border-radius: 8px;
+    border-radius: 10px;
     outline: none;
 }
 
@@ -160,4 +160,12 @@ li {
 .delete-btn:hover {
     background: #f44336;
     color: white;
+}
+
+input:invalid {
+    border-color: #feb2b2;
+}
+
+input:valid {
+    border-color: #cfedc5;
 }
