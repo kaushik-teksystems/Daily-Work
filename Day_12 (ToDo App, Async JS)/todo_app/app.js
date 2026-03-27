@@ -34,6 +34,16 @@ function toggleComplete(index) {
     renderTodos();
 }
 
+function sort(){
+    todos.sort((e1,e2) => {
+        const e1_text = e1.text.toLowerCase();
+        const e2_text = e2.text.toLowerCase();
+
+        return e1_text.localeCompare(e2_text);
+        renderTodos();
+    });
+}
+
 function renderTodos() {
     const list = document.getElementById('todo-list');
     list.innerHTML = '';
@@ -58,5 +68,16 @@ function renderTodos() {
         list.appendChild(li);
     });
 }
-
 renderTodos();
+
+function sort(){
+    todos.sort((e1,e2) => {
+        const e1_text = e1.text.toLowerCase();
+        const e2_text = e2.text.toLowerCase();
+
+        return e1_text.localeCompare(e2_text);
+    });
+    console.log(todos);
+    renderTodos();
+}
+
