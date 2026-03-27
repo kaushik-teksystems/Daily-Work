@@ -11,10 +11,11 @@ function addTodo() {
     const input2 = document.getElementById('todo-time-required');
     const timeRequired = input2.value.trim();
 
-    if (task == '') return;
-    if (timeRequired == '') return;
+    const urgency = document.querySelector('input[name="urgency"]:checked').value;
+    
+    if (task === '' || timeRequired === '') return;
 
-    todos.push({ text: task, timeRequired, completed: false });
+    todos.push({ text: task, timeRequired, urgency, completed: false });
 
     input1.value = '';
     input2.value = '';
@@ -34,16 +35,6 @@ function toggleComplete(index) {
     renderTodos();
 }
 
-function sort(){
-    todos.sort((e1,e2) => {
-        const e1_text = e1.text.toLowerCase();
-        const e2_text = e2.text.toLowerCase();
-
-        return e1_text.localeCompare(e2_text);
-        renderTodos();
-    });
-}
-
 function renderTodos() {
     const list = document.getElementById('todo-list');
     list.innerHTML = '';
@@ -53,13 +44,17 @@ function renderTodos() {
 
         if (todo.completed) li.classList.add('completed');
 
+        const urgencyTag = todo.urgency === 'Urgent'  ? `<span class="badge badge-urgent">Urgent</span>` : '';
+
         li.innerHTML = `
-        <div>
-            <span style="display:block; font-weight:600;">${todo.text}</span>
+          <div class="task-content">
+            <div style="display: flex; align-items: center; gap: 8px;">
+                <span style="font-weight:600;">${todo.text}</span>
+                ${urgencyTag}
+            </div>
             <span style="font-size:12px; color:#666;">${todo.timeRequired} hours</span>
-            
         </div>
-        <div>
+        <div class="actions">
             <button class="tick-btn" onclick="toggleComplete(${index})">✔</button>
             <button class="delete-btn" onclick="deleteTodo(${index})">✕</button>
         </div>
@@ -77,7 +72,5 @@ function sort(){
 
         return e1_text.localeCompare(e2_text);
     });
-    console.log(todos);
     renderTodos();
 }
-
