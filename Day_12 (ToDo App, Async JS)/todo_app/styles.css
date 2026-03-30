@@ -35,28 +35,46 @@ input {
     outline: none;
 }
 
-.urgency-selector {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+.priority-selector {
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+select {
+    padding: 8px;
+    border-radius: 8px;
+    border: 1px solid #cbd5e0;
+    outline: none;
+    cursor: pointer;
+}
+
+.badge-high { 
+    background-color: #fed7d7; 
+    color: #c53030; 
+    border: 1px solid #feb2b2;
+    border-radius: 8px;
+    padding: 2px;
     font-size: 14px;
-    font-weight: plain;
-    color: black;
-    margin-left: 0px;
-    margin-bottom: 10px;
 }
 
-.badge {
-    padding: 2px 8px;
-    border-radius: 12px;
-    font-size: 10px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
+.badge-medium { 
+    background-color: #feebc8; 
+    color: #c05621; 
+    border: 1px solid #fbd38d;
+    border-radius: 8px;
+    padding: 2px;
+    font-size: 14px;
 }
 
-.badge-urgent {
-    background-color: #fee2e2; /* Light Red */
-    color: #b91c1c;           /* Deep Red */
-    border: 1px solid #fecaca;
+.badge-low { 
+    background-color: #e2e8f0; 
+    color: #4a5568; 
+    border: 1px solid #cbd5e0;
+    border-radius: 8px;
+    padding: 2px;
+    font-size: 14px;
 }
 
 #todo-input {

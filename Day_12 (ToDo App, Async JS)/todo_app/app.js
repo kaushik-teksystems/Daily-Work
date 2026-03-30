@@ -12,11 +12,12 @@ function saveTodos() {
 function addTodo() {
     const input1 = document.getElementById('todo-input');
     const input2 = document.getElementById('todo-time-required');
-    
+    const prioritySelect = document.getElementById('priority-selector');
+
     const task = input1.value.trim();
     const timeRequired = input2.value.trim();
 
-     if (task === '') {
+    if (task === '') {
         input1.setCustomValidity("Please enter a valid task name.");
         input1.reportValidity();
         return;
@@ -28,9 +29,9 @@ function addTodo() {
         return;
     }
 
-    const urgency = document.querySelector('input[name="urgency"]:checked').value;
+    const priority = prioritySelect.value;
 
-    todos.push({ text: task, timeRequired, urgency, completed: false });
+    todos.push({ text: task, timeRequired, priority, completed: false });
 
     input1.value = '';
     input2.value = '';
@@ -59,13 +60,13 @@ function renderTodos() {
 
         if (todo.completed) li.classList.add('completed');
 
-        const urgencyTag = todo.urgency === 'Urgent'  ? `<span class="badge badge-urgent">Urgent</span>` : '';
+        const priorityTag = `<span class="badge badge-${todo.priority}">${todo.priority}</span>`
 
         li.innerHTML = `
           <div class="task-content">
             <div style="display: flex; align-items: center; gap: 8px;">
-                <span style="font-weight:600;">${todo.text}</span>
-                ${urgencyTag}
+                <span class="task-text">${todo.text}</span>
+                ${priorityTag}
             </div>
             <span style="font-size:12px; color:#666;">${todo.timeRequired} hours</span>
         </div>
@@ -80,8 +81,8 @@ function renderTodos() {
 }
 renderTodos();
 
-function sort(){
+function sort() {
     todos.sort((a, b) => a.text.toLowerCase().localeCompare(b.text.toLowerCase()));
-    saveTodos(); 
+    saveTodos();
     renderTodos();
 }

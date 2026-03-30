@@ -21,9 +21,13 @@
             <button class="sort-by-name" onClick="sort()">Sort By Name</button>
         </div>
 
-        <div class="urgency-selector">
-            <label><input type="radio" name="urgency" value="Urgent" checked>Urgent</label>
-            <label><input type="radio" name="urgency" value="standard">Standard</label>
+        <div class="priority-selector">
+            <label for="priority-selector">Choose Priority of the Task:</label>
+            <select id="priority-selector" name="priority-list">
+                <option value="high">High</option>
+                <option value="medium" selected>Medium</option>
+                <option value="low">Low</option>
+            </select>
         </div>
 
         <div class="list-section">
