@@ -19,7 +19,7 @@ exports.getNoteById = async (request, response) => {
 exports.createNote = async (request, response) => {
     const {title, content} = request.body;
 
-    if(!title || !content) response.send(400).json({error: 'Title & contnt required'});
+    if(!title || !content) return response.status(400).json({error: 'Title & contnt required'});
 
     const notes = await getNotes();
 
@@ -38,8 +38,8 @@ exports.createNote = async (request, response) => {
 exports.deleteNote = async (request, response) => {
     const notes = await getNotes();
 
-    const note = notes.find(n => n.id === request.params.id);
-    if(!note) response.status(404).end();
+    const note = notes.find(n => n.id == request.params.id);
+    if(!note) return response.status(404).end();
 
     const filtered = notes.filter(n => n.id != request.params.id);
 
