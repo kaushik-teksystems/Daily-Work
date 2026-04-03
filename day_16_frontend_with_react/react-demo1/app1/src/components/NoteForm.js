@@ -4,7 +4,7 @@ import axios from 'axios';
 function NoteForm({ addNote }) {
   const [note, setNote] = useState({
     title:"",
-    status: "Open"
+    content: "Open"
   });
 
   const handleSubmit = (e) => {
@@ -17,12 +17,12 @@ function NoteForm({ addNote }) {
     addNote(note);
     setNote({
       title:"",
-      status:"open"
+      content:"open"
     });
   };
 
-  const handleStatusChange = (e) => {
-    setNote({ ...note, status: e.target.value });
+  const handleContentChange = (e) => {
+    setNote({ ...note, content: e.target.value });
   }
 
   const sendPostRequest = () => {
@@ -39,10 +39,10 @@ function NoteForm({ addNote }) {
       <label>
         <input
           type="radio"
-          name="status"
+          name="content"
           value="open"
-          checked={note.status === "open"}
-          onChange={handleStatusChange}
+          checked={note.content === "open"}
+          onChange={handleContentChange}
         />
         Open
       </label>
@@ -51,8 +51,8 @@ function NoteForm({ addNote }) {
           type="radio"
           name="status"
           value="closed"
-          checked={note.status === "closed"}
-          onChange={handleStatusChange}
+          checked={note.content === "closed"}
+          onChange={handleContentChange}
         />
         Closed
       </label>
