@@ -1,12 +1,14 @@
 import { useState } from "react";
 import NoteForm from "./components/NoteForm";
 import NoteList from "./components/NoteList";
+import './App.css';
 
 function App() {
   const [notes, setNotes] = useState([]);
 
-  const addNote = (text) => {
-    const newNote = { id: Date.now(), text };
+  const addNote = (note) => {
+    const newNote = { ...note };
+    newNote.id = Date.now();
     setNotes([...notes, newNote]);
   };
 
