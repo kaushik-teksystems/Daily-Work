@@ -1,10 +1,10 @@
-/* App.css */
-
 :root {
   --glass-bg: rgba(255, 255, 255, 0.7);
   --glass-border: rgba(255, 255, 255, 0.3);
   --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   --text-dark: #2d3436;
+  --success-green: #00b894;
+  --error-red: #ff7675;
 }
 
 body {
@@ -27,11 +27,11 @@ body {
   backdrop-filter: blur(15px);
   border-radius: 24px;
   border: 1px solid var(--glass-border);
-  box-shadow: 0 20px 40px rgba(180, 13, 13, 0.1);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
   text-align: center;
 }
 
-h1 {
+h2 {
   font-weight: 700;
   font-size: 2rem;
   margin-bottom: 30px;
@@ -48,59 +48,194 @@ form {
 }
 
 input[type="text"] {
+  width: 100%;
+  box-sizing: border-box;
   padding: 14px 20px;
   border-radius: 12px;
-  border: 1px solid rgba(232, 2, 2, 0.05);
+  border: 1px solid rgba(0, 0, 0, 0.05);
   background: rgba(255, 255, 255, 0.8);
   font-size: 1rem;
   outline: none;
+  font-family: inherit;
 }
 
-.radio-group {
-  display: flex;
-  justify-content: center;
-  gap: 20px; 
-  font-size: 0.9rem;
-  font-weight: 500;
-}
-
-.radio-group label {
+.time-container {
   display: flex;
   align-items: center;
-  gap: 8px;
-  cursor: pointer;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 5px 0;
+}
+
+.time-group {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  gap: 10px;
+  background: rgba(255, 255, 255, 0.8);
+  padding: 8px 15px;
+  border-radius: 12px;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.time-input {
+  width: 45px;
+  border: none;
+  background: transparent;
+  font-size: 1rem;
+  font-weight: 600;
+  text-align: center;
+  outline: none;
+  font-family: inherit;
+}
+
+.time-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #764ba2;
+  text-transform: uppercase;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 form > button {
+  width: 100%;
   padding: 14px;
   border-radius: 12px;
   border: none;
   background: var(--primary-gradient);
   color: white;
   font-weight: 600;
+  font-size: 1rem;
   cursor: pointer;
+  transition: transform 0.2s, opacity 0.2s;
+}
+
+form > button:active {
+  transform: scale(0.98);
+}
+
+form > button:hover {
+  opacity: 0.9;
+}
+
+.list-section {
+  text-align: left;
+}
+
+.list-section label {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #764ba2;
+  margin-bottom: 10px;
+  letter-spacing: 1px;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
 .note-item {
   background: rgba(255, 255, 255, 0.5);
   margin-bottom: 12px;
-  padding: 12px 20px;
+  padding: 15px 20px;
   border-radius: 16px;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
   border: 1px solid var(--glass-border);
+  position: relative;
+  transition: all 0.3s ease;
+  text-align: left; /* Overrides the center alignment of .App */
+}
+
+/* Container for text to ensure alignment */
+.task-content {
+  width: 100%;
+  text-align: left;
+}
+
+.note-item.completed {
+  opacity: 0.6;
+  background: rgba(200, 200, 200, 0.2);
+}
+
+.note-item.completed h3,
+.note-item.completed p {
+  text-decoration: line-through;
+  color: #636e72;
+}
+
+.note-item h3 {
+  margin: 0;
+  font-size: 1.1rem;
+  color: #4834d4;
+  padding-right: 90px;
+  text-align: left;
+}
+
+.note-item p {
+  margin: 0;
+  font-size: 0.9rem;
+  opacity: 0.8;
+  padding-right: 90px;
+  text-align: left;
+}
+
+.note-time {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #764ba2;
+  margin-top: 4px;
+  text-align: left;
+  display: block;
+}
+
+.actions {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  gap: 8px;
+}
+
+.tick-btn {
+  background: #55efc4;
+  color: var(--success-green);
+  border: 1.5px solid var(--success-green);
+  padding: 5px 8px;
+  font-size: 0.8rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.tick-btn:hover {
+  background: var(--success-green);
+  color: white;
 }
 
 .delete-btn {
-  background: #ff7675;
-  color: rgb(232, 38, 38);
-  padding: 6px 12px;
+  background: var(--error-red);
+  color: white;
+  padding: 7px 10px;
   font-size: 0.75rem;
+  font-weight: 600;
   border-radius: 8px;
   border: none;
   cursor: pointer;
-  flex-shrink: 0; 
-  width: auto;
-  min-width: 60px;
+}
+
+.delete-btn:hover {
+  background: #ff5252;
 }
