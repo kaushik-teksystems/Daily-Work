@@ -9,31 +9,72 @@
 
 body {
   margin: 0;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  padding: 0;
   font-family: 'Inter', sans-serif;
   background: radial-gradient(circle at top left, #e0c3fc 0%, #8ec5fc 100%);
+  background-attachment: fixed;
   color: var(--text-dark);
+  height: 100vh;
+}
+
+.main-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  width: 100%;
+  margin-top: 5px;
+}
+
+.navbar {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--glass-border);
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  padding: 15px 0;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: var(--text-dark);
+  font-weight: 600;
+  padding: 8px 20px;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+}
+
+.nav-link.active {
+  background: var(--primary-gradient);
+  color: white;
+  box-shadow: 0 4px 10px rgba(118, 75, 162, 0.2);
 }
 
 .App {
   width: 100%;
   max-width: 450px;
-  margin: 20px;
+  /* This creates the space between the top navbar and the card */
+  margin-top: 60px; 
+  margin-bottom: 40px;
   padding: 40px;
   background: var(--glass-bg);
-  backdrop-filter: blur(15px);
+  backdrop-filter: blur(20px);
   border-radius: 24px;
   border: 1px solid var(--glass-border);
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
   text-align: center;
+  box-sizing: border-box;
 }
 
-h2 {
-  font-weight: 700;
-  font-size: 2rem;
+h1 {
+  font-weight: 800;
+  font-size: 2.2rem;
+  margin-top: 0;
   margin-bottom: 30px;
   background: var(--primary-gradient);
   -webkit-background-clip: text;
@@ -44,7 +85,6 @@ form {
   display: flex;
   flex-direction: column;
   gap: 15px;
-  margin-bottom: 40px;
 }
 
 input[type="text"] {
@@ -64,22 +104,21 @@ input[type="text"] {
   align-items: center;
   justify-content: space-between;
   gap: 10px;
-  padding: 5px 0;
 }
 
 .time-group {
   display: flex;
   flex: 1;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
   background: rgba(255, 255, 255, 0.8);
-  padding: 8px 15px;
+  padding: 8px 12px;
   border-radius: 12px;
   border: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 .time-input {
-  width: 45px;
+  width: 40px;
   border: none;
   background: transparent;
   font-size: 1rem;
@@ -87,19 +126,6 @@ input[type="text"] {
   text-align: center;
   outline: none;
   font-family: inherit;
-}
-
-.time-label {
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: #764ba2;
-  text-transform: uppercase;
-}
-
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
 }
 
 form > button {
@@ -112,15 +138,7 @@ form > button {
   font-weight: 600;
   font-size: 1rem;
   cursor: pointer;
-  transition: transform 0.2s, opacity 0.2s;
-}
-
-form > button:active {
-  transform: scale(0.98);
-}
-
-form > button:hover {
-  opacity: 0.9;
+  margin-top: 10px;
 }
 
 .list-section {
@@ -133,7 +151,7 @@ form > button:hover {
   font-weight: 700;
   text-transform: uppercase;
   color: #764ba2;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
   letter-spacing: 1px;
 }
 
@@ -154,25 +172,16 @@ ul {
   gap: 4px;
   border: 1px solid var(--glass-border);
   position: relative;
-  transition: all 0.3s ease;
-  text-align: left; /* Overrides the center alignment of .App */
-}
-
-/* Container for text to ensure alignment */
-.task-content {
-  width: 100%;
   text-align: left;
 }
 
 .note-item.completed {
   opacity: 0.6;
-  background: rgba(200, 200, 200, 0.2);
 }
 
 .note-item.completed h3,
 .note-item.completed p {
   text-decoration: line-through;
-  color: #636e72;
 }
 
 .note-item h3 {
@@ -180,7 +189,6 @@ ul {
   font-size: 1.1rem;
   color: #4834d4;
   padding-right: 90px;
-  text-align: left;
 }
 
 .note-item p {
@@ -188,7 +196,6 @@ ul {
   font-size: 0.9rem;
   opacity: 0.8;
   padding-right: 90px;
-  text-align: left;
 }
 
 .note-time {
@@ -196,8 +203,6 @@ ul {
   font-weight: 700;
   color: #764ba2;
   margin-top: 4px;
-  text-align: left;
-  display: block;
 }
 
 .actions {
@@ -209,33 +214,70 @@ ul {
   gap: 8px;
 }
 
+.tick-btn, .delete-btn {
+  padding: 5px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 800;
+  font-size: 0.75rem;
+}
+
 .tick-btn {
   background: #55efc4;
   color: var(--success-green);
   border: 1.5px solid var(--success-green);
-  padding: 5px 8px;
-  font-size: 0.8rem;
-  border-radius: 8px;
-  cursor: pointer;
-  font-weight: bold;
-}
-
-.tick-btn:hover {
-  background: var(--success-green);
-  color: white;
 }
 
 .delete-btn {
   background: var(--error-red);
   color: white;
-  padding: 7px 10px;
-  font-size: 0.75rem;
-  font-weight: 600;
-  border-radius: 8px;
   border: none;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(5px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.modal-card {
+  background: white;
+  padding: 30px;
+  border-radius: 20px;
+  width: 320px;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+.modal-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+  justify-content: center;
+}
+
+.modal-btn {
+  padding: 10px 20px;
+  border-radius: 10px;
+  border: none;
+  font-weight: 700;
   cursor: pointer;
 }
 
-.delete-btn:hover {
-  background: #ff5252;
+.modal-btn.confirm {
+  background: var(--primary-gradient);
+  color: white;
+}
+
+.modal-btn.cancel {
+  background: #eee;
+  color: #666;
 }
