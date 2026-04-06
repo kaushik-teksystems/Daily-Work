@@ -1,7 +1,9 @@
 import { useState } from "react";
 import axios from 'axios';
+import { useNavigate } from "react-router-dom";
 
-function NoteForm({ addNote }) {
+function NoteForm({ addNote, showAlert }) {
+  const navigate = useNavigate();
   const [note, setNote] = useState({
     title: "",
     content: "",
@@ -11,8 +13,9 @@ function NoteForm({ addNote }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     if (!note.title.trim()) {
-      alert("Title cannot be empty!");
+      showAlert("Input Required", "Title cannot be empty!");
       return;
     }
 
@@ -32,6 +35,7 @@ function NoteForm({ addNote }) {
           hours: 0,
           minutes: 0
         });
+        navigate("/notes");
       })
       .catch(err => console.error("Error saving note: ", err));
   };
