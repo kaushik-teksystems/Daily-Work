@@ -17,7 +17,7 @@ exports.getNoteById = async (request, response) => {
 };
 
 exports.createNote = async (request, response) => {
-    const { title, content, timeRequired } = request.body;
+    const { title, content, priority, timeRequired } = request.body;
 
     if (!title || !content) return response.status(400).json({ error: 'Title & contnt required' });
 
@@ -27,6 +27,7 @@ exports.createNote = async (request, response) => {
         id: Date.now(),
         title,
         content,
+        priority: priority || 2,
         timeRequired: timeRequired || "0h 0m",
         status: "created",
         createdAt: new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })

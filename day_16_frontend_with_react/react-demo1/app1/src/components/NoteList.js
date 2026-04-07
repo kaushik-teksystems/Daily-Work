@@ -1,6 +1,9 @@
 import NoteItem from "./NoteItem";
 
 function NoteList({ notes, deleteNote, toggleComplete }) {
+  
+  const sortedNotes = [...notes].sort((a, b) => b.priority - a.priority);
+
   return (
     <div className="table-wrapper">
       <table className="notes-table">
@@ -9,13 +12,14 @@ function NoteList({ notes, deleteNote, toggleComplete }) {
             <th>Sl. no.</th>
             <th>Title & Content</th>
             <th>Completion Time</th>
+            <th>Priority</th>
             <th>Status</th>
             <th>Created On</th>
             <th>Actions</th>
           </tr>
         </thead>
         <tbody>
-            {notes.map((note, index) => (
+          {sortedNotes.map((note, index) => (
             <tr key={note.id} className={note.status === 'closed' ? 'row-completed' : ''}>
               <td>{index + 1}</td>
               <td>
@@ -23,6 +27,10 @@ function NoteList({ notes, deleteNote, toggleComplete }) {
                 <div className="table-desc">{note.content}</div>
               </td>
               <td>{note.timeRequired}</td>
+              <td className="col-priority">
+                <span className={`priority-badge level-${note.priority}`}>{note.priority === 3 ? "High" : note.priority === 2 ? "Medium" : "Low"}
+                </span>
+              </td>
               <td>
                 <span className={`status-badge ${note.status}`}>
                   {note.status}

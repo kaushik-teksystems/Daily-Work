@@ -1,26 +1,29 @@
 [
   {
-    "id": 1775465522355,
-    "title": "Testing 2",
-    "content": "Testing Navigation Setup",
-    "timeRequired": "0h 30m",
-    "status": "created",
-    "createdAt": "6/4/2026, 2:22:02 pm"
-  },
-  {
     "id": 1775466170076,
     "title": "Testing 3",
     "content": "Testing auto navigation to Notes tab once a new note is added",
+    "priority": 1,
     "timeRequired": "0h 3m",
     "status": "closed",
     "createdAt": "6/4/2026, 2:32:50 pm"
   },
   {
-    "id": 1775473764722,
-    "title": "Testing 5",
-    "content": "Testing Modal ",
-    "timeRequired": "0h 1m",
-    "status": "closed",
-    "createdAt": "6/4/2026, 4:39:24 pm"
+    "id": 1775543661079,
+    "title": "Testing",
+    "content": "Testing Priority addition",
+    "priority": 2,
+    "timeRequired": "0h 5m",
+    "status": "created",
+    "createdAt": "7/4/2026, 12:04:21 pm"
+  },
+  {
+    "id": 1775544572305,
+    "title": "Task 2",
+    "content": "Add input text length validation",
+    "priority": 3,
+    "timeRequired": "0h 30m",
+    "status": "created",
+    "createdAt": "7/4/2026, 12:19:32 pm"
   }
 ]
