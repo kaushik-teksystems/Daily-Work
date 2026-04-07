@@ -8,8 +8,11 @@ function NoteForm({ addNote, showAlert }) {
     title: "",
     content: "",
     hours: 0,
-    minutes: 0
+    minutes: 0,
+    priority: 2
   });
+
+  const priorityLabels = { 1: "Low", 2: "Medium", 3: "High" };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -22,6 +25,7 @@ function NoteForm({ addNote, showAlert }) {
     const noteData = {
       title: note.title,
       content: note.content,
+      priority: note.priority,
       timeRequired: `${note.hours}h ${note.minutes}m`
     };
 
@@ -33,7 +37,8 @@ function NoteForm({ addNote, showAlert }) {
           title: "",
           content: "",
           hours: 0,
-          minutes: 0
+          minutes: 0,
+          priority: 2
         });
         navigate("/notes");
       })
@@ -54,6 +59,20 @@ function NoteForm({ addNote, showAlert }) {
         value={note.content}
         onChange={(e) => setNote({ ...note, content: e.target.value })}
       />
+      <div className="priority-container">
+        <label className="priority-label">
+          Priority: <span className={`priority-text-${note.priority}`}>{priorityLabels[note.priority]}</span>
+        </label>
+        <input
+          type="range"
+          min="1"
+          max="3"
+          step="1"
+          value={note.priority}
+          onChange={(e) => setNote({ ...note, priority: parseInt(e.target.value) })}
+          className="priority-slider"
+        />
+      </div>
       <div className="time-container">
         <label>Time:</label>
         <div className="time-group">
