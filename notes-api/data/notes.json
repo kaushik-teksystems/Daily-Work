@@ -1,13 +1,5 @@
 [
   {
-    "id": 1775458549822,
-    "title": "Testing ",
-    "content": "Testing integration of timeRequired feature to backend",
-    "timeRequired": "0h 2m",
-    "status": "closed",
-    "createdAt": "6/4/2026, 12:25:49 pm"
-  },
-  {
     "id": 1775465522355,
     "title": "Testing 2",
     "content": "Testing Navigation Setup",
@@ -20,7 +12,7 @@
     "title": "Testing 3",
     "content": "Testing auto navigation to Notes tab once a new note is added",
     "timeRequired": "0h 3m",
-    "status": "created",
+    "status": "closed",
     "createdAt": "6/4/2026, 2:32:50 pm"
   },
   {
@@ -28,7 +20,7 @@
     "title": "Testing 5",
     "content": "Testing Modal ",
     "timeRequired": "0h 1m",
-    "status": "created",
+    "status": "closed",
     "createdAt": "6/4/2026, 4:39:24 pm"
   }
 ]

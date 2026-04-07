@@ -87,10 +87,14 @@ function App() {
           <h1>Notes App</h1>
 
           <Routes>
-            <Route path="/" element={<NoteForm addNote={addNote} showAlert={showAlert} />} />
-
+            <Route path="/" element={
+              <div className="form-container-width">
+                <NoteForm addNote={addNote} showAlert={showAlert}
+                />
+              </div>
+            } />
             <Route path="/notes" element={
-              <div className="list-section">
+              <div className="list-section table-container-width">
                 <label>Current Notes</label>
                 <NoteList
                   notes={notes}

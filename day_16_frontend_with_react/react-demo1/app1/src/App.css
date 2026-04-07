@@ -56,10 +56,8 @@ body {
 }
 
 .App {
-  width: 100%;
-  max-width: 450px;
-  /* This creates the space between the top navbar and the card */
-  margin-top: 60px; 
+  max-width: 800px;
+  margin-top: 35px; 
   margin-bottom: 40px;
   padding: 40px;
   background: var(--glass-bg);
@@ -69,6 +67,16 @@ body {
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
   text-align: center;
   box-sizing: border-box;
+}
+
+.form-container-width {
+  max-width: 700px;
+  margin-top: 20px;
+}
+
+.table-container-width {
+  max-width: 800px;
+  margin: 0 auto;
 }
 
 h1 {
@@ -280,4 +288,98 @@ ul {
 .modal-btn.cancel {
   background: #eee;
   color: #666;
+}
+
+.table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  margin-top: 20px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 15px;
+}
+
+.notes-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 700px;
+  text-align: left;
+}
+
+.notes-table thead {
+  background: rgba(118, 75, 162, 0.15);
+}
+
+.notes-table th {
+  padding: 15px;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  color: #764ba2;
+  border-bottom: 2px solid var(--glass-border);
+  border-right: 1px solid rgba(118, 75, 162, 0.1); 
+  text-align: left;
+}
+
+.notes-table td {
+  padding: 15px;
+  border-bottom: 1px solid var(--glass-border);
+  border-right: 1px solid rgba(118, 75, 162, 0.1); 
+  font-size: 0.85rem;
+  vertical-align: middle;
+}
+
+.notes-table th:last-child,
+.notes-table td:last-child {
+  border-right: none;
+}
+
+.table-title { font-weight: 700; color: #4834d4; }
+.table-desc { font-size: 0.75rem; opacity: 0.7; margin-top: 2px; }
+.table-date { font-size: 0.75rem; color: #636e72; white-space: nowrap; }
+
+.status-badge {
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 0.7rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+.status-badge.created { background: #d1f2eb; color: #16a085; }
+.status-badge.closed { background: #f2f3f4; color: #7f8c8d; }
+
+.row-completed {
+  opacity: 0.6;
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.table-actions {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+  min-width: 65px;
+}
+
+.tick-btn, .delete-btn {
+  padding: 6px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 800;
+  font-size: 0.75rem;
+  transition: 0.2s;
+  width: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.tick-btn {
+  background: #55efc4;
+  color: var(--success-green);
+  border: 1.5px solid var(--success-green);
+}
+
+.delete-btn {
+  background: var(--error-red);
+  color: white;
+  border: none;
+  margin-left: auto;
 }
