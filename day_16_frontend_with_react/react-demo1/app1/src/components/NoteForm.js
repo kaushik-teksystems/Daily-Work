@@ -14,6 +14,14 @@ function NoteForm({ addNote, showAlert }) {
 
   const priorityLabels = { 1: "Low", 2: "Medium", 3: "High" };
 
+  const handleTitleChange = (e) => {
+    const val = e.target.value;
+    if (val.length === 100) {
+      showAlert("Limit Reached", "If more details needed in title, please pass it in the content field.");
+    }
+    setNote({ ...note, title: val });
+  }
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -47,18 +55,33 @@ function NoteForm({ addNote, showAlert }) {
 
   return (
     <form onSubmit={handleSubmit}>
-      <input
-        type="text"
-        placeholder="Title"
-        value={note.title}
-        onChange={(e) => setNote({ ...note, title: e.target.value })}
-      />
-      <input
-        type="text"
-        placeholder="Content"
-        value={note.content}
-        onChange={(e) => setNote({ ...note, content: e.target.value })}
-      />
+
+      <div className="input-container">
+        <input
+          type="text"
+          placeholder="Title"
+          value={note.title}
+          maxLength="100"
+          onChange={handleTitleChange}
+        />
+        <div className={`char-counter-bottom ${note.title.length >= 90 ? "limit-near" : ""}`}>
+          {note.title.length}/100
+        </div>
+      </div>
+
+      <div className="input-container">
+        <textarea
+          placeholder="Content"
+          value={note.content}
+          maxLength="300"
+          rows="4"
+          onChange={(e) => setNote({ ...note, content: e.target.value })}
+        />
+        <div className={`char-counter-bottom ${note.content.length >= 250 ? "limit-near" : ""}`}>
+          {note.content.length}/300
+        </div>
+      </div>
+
       <div className="priority-container">
         <label className="priority-label">
           Priority: <span className={`priority-text-${note.priority}`}>{priorityLabels[note.priority]}</span>
