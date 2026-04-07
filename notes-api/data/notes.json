@@ -1,14 +1,5 @@
 [
   {
-    "id": 1775466170076,
-    "title": "Testing 3",
-    "content": "Testing auto navigation to Notes tab once a new note is added",
-    "priority": 1,
-    "timeRequired": "0h 3m",
-    "status": "closed",
-    "createdAt": "6/4/2026, 2:32:50 pm"
-  },
-  {
     "id": 1775543661079,
     "title": "Testing",
     "content": "Testing Priority addition",
@@ -25,5 +16,23 @@
     "timeRequired": "0h 2m",
     "status": "created",
     "createdAt": "7/4/2026, 2:17:12 pm"
+  },
+  {
+    "id": 1775585094111,
+    "title": "Testing UI",
+    "content": "Added split dashboard style to occupy vacant UI space",
+    "priority": 1,
+    "timeRequired": "0h 7m",
+    "status": "created",
+    "createdAt": "7/4/2026, 11:34:54 pm"
+  },
+  {
+    "id": 1775585116984,
+    "title": "ABC",
+    "content": "DEF",
+    "priority": 1,
+    "timeRequired": "0h 0m",
+    "status": "created",
+    "createdAt": "7/4/2026, 11:35:16 pm"
   }
 ]

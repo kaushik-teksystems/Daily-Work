@@ -1,9 +1,7 @@
 import { useState } from "react";
 import axios from 'axios';
-import { useNavigate } from "react-router-dom";
 
 function NoteForm({ addNote, showAlert }) {
-  const navigate = useNavigate();
   const [note, setNote] = useState({
     title: "",
     content: "",
@@ -48,7 +46,6 @@ function NoteForm({ addNote, showAlert }) {
           minutes: 0,
           priority: 2
         });
-        navigate("/notes");
       })
       .catch(err => console.error("Error saving note: ", err));
   };
@@ -97,7 +94,7 @@ function NoteForm({ addNote, showAlert }) {
         />
       </div>
       <div className="time-container">
-        <label>Time:</label>
+        <label className="time-label">Time:</label>
         <div className="time-group">
           <input
             type="number"
