@@ -8,7 +8,7 @@ import './App.css';
 
 function App() {
   const [notes, setNotes] = useState([]);
-
+  const [searchTerm, setSearchTerm] = useState("");
   const [modal, setModal] = useState({
     show: false,
     title: "",
@@ -22,6 +22,11 @@ function App() {
       .then(response => setNotes(response.data))
       .catch(err => console.error("Could not fetch notes: ", err));
   }, []);
+
+  const filteredNotes = notes.filter(note =>
+    note.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    note.content.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
   const addNote = (newNote) => {
     setNotes([...notes, newNote]);
@@ -61,7 +66,7 @@ function App() {
     setModal({
       show: true,
       title: "Delete Note",
-      message: "Are you sure you want to emove this note?",
+      message: "Are you sure you want to remove this note?",
       type: "confirm",
       onConfirm: () => {
         axios.delete(`http://localhost:3001/notes/${id}`)
@@ -76,28 +81,56 @@ function App() {
 
   return (
     <BrowserRouter>
-
+      <h1>Notes App</h1>
       <div className="main-wrapper">
         <nav className="navbar">
           <NavLink to="/" className={({ isActive }) => isActive ? "nav-link active" : "nav-link"}>Create Note</NavLink>
           <NavLink to="/notes" className={({ isActive }) => isActive ? "nav-link active" : "nav-link"}>Notes</NavLink>
         </nav>
 
-        <div className="App">
-          <h1>Notes App</h1>
-
+        <div className="content-area">
           <Routes>
             <Route path="/" element={
-              <div className="form-container-width">
-                <NoteForm addNote={addNote} showAlert={showAlert}
-                />
+              <div className="dashboard-layout">
+
+                <div className="side-panel">
+                  <label class="dash-labels">Add Note</label>
+                  <NoteForm addNote={addNote} showAlert={showAlert}
+                  />
+                </div>
+
+                <div className="main-feed">
+                  <div className="feed-header">
+                    <label className="dash-labels">Recently Added</label>
+                    <input
+                      type="text"
+                      placeholder="Search notes..."
+                      className="search-input"
+                      value={searchTerm}
+                      onChange={(e) => setSearchTerm(e.target.value)}
+                    />
+                  </div>
+                  <div className="feed-scroll">
+                    <NoteList notes={filteredNotes} deleteNote={deleteNote} toggleComplete={toggleComplete} />
+                  </div>
+                </div>
               </div>
             } />
+
             <Route path="/notes" element={
-              <div className="list-section table-container-width">
-                <label>Current Notes</label>
+              <div className="full-table-view">
+                <div className="feed-header">
+                <h1>All Notes</h1>
+                <input 
+                  type="text"
+                  placeholder="Search from DB..."
+                  className="search-input"
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                />
+                </div>
                 <NoteList
-                  notes={notes}
+                  notes={filteredNotes}
                   deleteNote={deleteNote}
                   toggleComplete={toggleComplete}
                 />

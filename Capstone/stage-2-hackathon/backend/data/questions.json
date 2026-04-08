@@ -1,0 +1,42 @@
+[
+  {
+    "id": "q1",
+    "question": "What was the name of your first school?"
+  },
+  {
+    "id": "q2",
+    "question": "What is your childhood best friend's first name?"
+  },
+  {
+    "id": "q3",
+    "question": "What was the make of your first vehicle?"
+  },
+  {
+    "id": "q4",
+    "question": "In which city were you born?"
+  },
+  {
+    "id": "q5",
+    "question": "What was the name of your first employer?"
+  },
+  {
+    "id": "q6",
+    "question": "What is the name of the street you grew up on?"
+  },
+  {
+    "id": "q7",
+    "question": "What was your favorite subject in school?"
+  },
+  {
+    "id": "q8",
+    "question": "What is your maternal grandmother’s first name?"
+  },
+  {
+    "id": "q9",
+    "question": "What was the name of your first pet?"
+  },
+  {
+    "id": "q10",
+    "question": "What was the destination of your first flight?"
+  }
+]

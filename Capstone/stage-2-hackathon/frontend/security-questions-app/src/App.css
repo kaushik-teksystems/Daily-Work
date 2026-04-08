@@ -1,0 +1,148 @@
+body {
+  font-family: 'Inter', 'Arial', sans-serif;
+  background-color: #f0f2f5;
+  margin: 0;
+  padding: 0;
+}
+
+.App {
+  max-width: 500px;
+  margin: 10px auto;
+  padding: 10px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+
+h2 {
+  text-align: center;
+  color: #1f2937;
+  font-weight: 600;
+  margin-bottom: 10px;
+  margin-top: 5px;
+  font-size: 20px;
+}
+
+.question-row select {
+  width: 100%;
+  padding: 10px;
+  font-size: 13px;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+  background: #fff;
+  transition: border 0.2s;
+}
+
+.question-row select:focus {
+  border-color: #3b82f6;
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(59,130,246,0.2);
+}
+
+
+.answer-fields {
+  display: flex;
+  gap: 5px;
+  margin: 4px 0;
+  width: 50%;
+}
+
+.answer-fields input {
+  flex: 1;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+  font-size: 10px;
+  transition: all 0.2s;
+}
+
+.answer-fields input:focus {
+  border-color: #3b82f6;
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(59,130,246,0.15);
+}
+
+label {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  margin-top: 15px;
+  cursor: pointer;
+}
+
+p {
+  font-size: 13px;
+  color: #6b7280;
+  margin: 5px 4px;
+}
+
+button {
+  margin-top: 15px;
+  padding: 14px 24px;
+  width: 100%;
+  font-size: 16px;
+  border-radius: 10px;
+  border: none;
+  background-color: #3b82f6;
+  color: #ffffff;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #2563eb;
+  box-shadow: 0 4px 15px rgba(59,130,246,0.3);
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.45);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: #ffffff;
+  padding: 30px 25px;
+  border-radius: 12px;
+  text-align: center;
+  max-width: 400px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+.modal-content p {
+  font-size: 16px;
+  color: #111827;
+  margin-bottom: 20px;
+}
+
+.modal-content button {
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  background-color: #3b82f6;
+  color: white;
+}
+
+.modal-content button:hover {
+  background-color: #2563eb;
+}
+
+@media screen and (max-width: 600px) {
+  .answer-fields {
+    flex-direction: column;
+  }
+
+  button {
+    font-size: 15px;
+  }
+}
