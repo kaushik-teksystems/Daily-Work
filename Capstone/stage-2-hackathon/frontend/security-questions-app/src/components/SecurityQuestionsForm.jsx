@@ -2,10 +2,17 @@ import React, { useState } from "react";
 import QuestionRow from "./QuestionRow";
 import HideAnswersCheckbox from "./HideAnswersCheckbox";
 
-const SecurityQuestionsForm = ({ questions, onSubmit, setModal }) => {
+const SecurityQuestionsForm = ({ questions, onSubmit }) => {
     const [responses, setResponses] = useState(
-        Array.from({ length: 5 }, () => ({ questionId: "", answer: "", confirmAnswer: "" }))
+        Array.from({ length: 5 }, () => ({
+            questionId: "",
+            answer: "",
+            confirmAnswer: "",
+            touchedAnswer: false,
+            touchedConfirm: false
+        }))
     );
+
     const [hideAnswers, setHideAnswers] = useState(false);
 
     const handleChange = (index, field, value) => {
@@ -14,47 +21,59 @@ const SecurityQuestionsForm = ({ questions, onSubmit, setModal }) => {
         setResponses(updated);
     };
 
-    const handleSubmit = () => {
-        for (const r of responses) {
-            if (!r.questionId || !r.answer || !r.confirmAnswer) {
-                setModal({ show: true, message: "All fields are required" });
-                return;
-            }
-            if (r.answer !== r.confirmAnswer) {
-                setModal({ show: true, message: "Answers do not match" });
-                return;
-            }
-            if (r.answer.length < 5 || r.answer.length > 255) {
-                setModal({ show: true, message: "Answer must be between 5-255 characters" });
-                return;
-            }
-        }
-
-        onSubmit(responses);
+    const handleBlur = (index, field) => {
+        const updated = [...responses];
+        updated[index][field] = true; 
+        setResponses(updated);
     };
 
-    const selectedIds = responses.map((r) => r.questionId);
+    const getValidation = (r) => {
+        if (!r.touchedAnswer && !r.touchedConfirm) return "idle";
+
+        if (!r.answer) return "empty";
+        if (r.answer.length < 5) return "short";
+        if (r.answer.length > 255) return "long";
+
+        if (r.touchedConfirm) {
+            if (!r.confirmAnswer) return "confirmEmpty";
+            if (r.answer !== r.confirmAnswer) return "mismatch";
+        }
+
+        return "valid";
+    };
+
+    const isFormValid = () =>
+        responses.every(
+            (r) =>
+                r.questionId &&
+                r.answer &&
+                r.confirmAnswer &&
+                r.answer.length >= 5 &&
+                r.answer.length <= 255 &&
+                r.answer === r.confirmAnswer
+        );
 
     return (
-        <div>
+        <div className="form-container">
             {responses.map((r, i) => (
-                <div key={i} className="question-row">
-                    <QuestionRow
-                        index={i}
-                        questions={questions}
-                        selectedIds={selectedIds}
-                        response={r}
-                        onChange={handleChange}
-                        hideAnswers={hideAnswers}
-                    />
-                </div>
+                <QuestionRow
+                    key={i}
+                    index={i}
+                    questions={questions}
+                    selectedIds={responses.map((r) => r.questionId)}
+                    response={r}
+                    onChange={handleChange}
+                    onBlur={handleBlur}   
+                    hideAnswers={hideAnswers}
+                    validation={getValidation(r)}
+                />
             ))}
 
             <HideAnswersCheckbox hide={hideAnswers} setHide={setHideAnswers} />
 
-            <p>Minimum 5 characters, maximum 255 characters for answers.</p>
-
-            <button onClick={handleSubmit}>Update</button>
+            <button disabled={!isFormValid()}>
+                Update
+            </button>
         </div>
     );
 };

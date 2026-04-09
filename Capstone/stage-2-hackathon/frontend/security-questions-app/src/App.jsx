@@ -33,25 +33,27 @@ function App() {
   };
 
   return (
-    <div className="App">
-      <h2>Security Questions</h2>
+    <div className="layout">
 
-      <SecurityQuestionsForm
-        questions={questions}
-        onSubmit={handleSubmit}
-        setModal={setModal}
-      />
-
-      {modal.show && (
-        <div className="modal-overlay">
-          <div className="modal-content">
-            <p>{modal.message}</p>
-            <button onClick={() => setModal({ show: false, message: "" })}>
-              Close
-            </button>
-          </div>
+      <div className="right-panel">
+        <div className="right-content">
+          <h1>Secure Your Account 🔐</h1>
+          <p>
+            Set up your security questions to protect your account.
+            These help us verify your identity.
+          </p>
         </div>
-      )}
+      </div>
+
+      <div className="left-panel">
+        <h2>Security Questions</h2>
+
+        <SecurityQuestionsForm
+          questions={questions}
+          onSubmit={handleSubmit}
+        />
+      </div>
+
     </div>
   );
 }
