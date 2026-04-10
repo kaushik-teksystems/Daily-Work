@@ -26,4 +26,8 @@ public class NoteService {
 	public Optional<Order1> getOrderById(Integer id) {
 		return order1Repository.findById(id);
 	}
+
+	public void deleteOrder(Integer id) {
+		order1Repository.deleteById(id);;
+	}
 }
