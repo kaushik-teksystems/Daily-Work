@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -35,7 +36,7 @@ public class NoteController {
 	}// dependency
 
 	@GetMapping()
-	Order1 getOrder() {
+	Iterable<Order1> getOrder() {
 		return noteService.getOrder();
 	}
 
