@@ -1,10 +1,20 @@
 package com.example.demo.entity;
 
-public class Note {
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.validation.constraints.NotBlank;
 
+@Entity
+public class Note {
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
+	@NotBlank
 	private String title;
-	String content;
+	@NotBlank
+	private String content;
 //	STATUS status;
 
 	public long getId() {
