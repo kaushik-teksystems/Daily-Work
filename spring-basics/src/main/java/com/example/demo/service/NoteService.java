@@ -11,7 +11,7 @@ import com.example.demo.entity.Order1;
 import com.example.demo.repository.Order1Repository;
 
 @Service
-public class NoteService {
+public class NoteService implements INoteService{
 
 	@Autowired
 	Order1Repository order1Repository;
@@ -21,14 +21,20 @@ public class NoteService {
 	EmailService emailService;
 
 	public Iterable<Order1> getOrder() {
+		try {
+			Thread.sleep(1040);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return order1Repository.findAll();
 	}
 
 	@Transactional (rollbackFor = Exception.class, noRollbackFor = {IOException.class})
-	public Integer addOrder(Order1 order1) throws IOException{
+	public Integer addOrder(Order1 order1){
 		paymentService.processPayment();
 		order1Repository.save(order1);
-		emailService.send(order1.getId());
+//		emailService.send(order1.getId());
 		return order1.getId();
 	}
 
