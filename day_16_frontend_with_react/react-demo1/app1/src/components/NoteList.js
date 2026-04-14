@@ -36,7 +36,7 @@ function NoteList({ notes, deleteNote, toggleComplete }) {
                   {note.status}
                 </span>
               </td>
-              <td className="table-date">{note.createdAt.split(',')[0]}</td>
+              <td className="table-date">{note.createdAt ? note.createdAt.split(',')[0] : 'No Date'}</td>
               <td>
                 <div className="table-actions">
                   {note.status !== 'closed' && (

@@ -35,7 +35,7 @@ function NoteForm({ addNote, showAlert }) {
       timeRequired: `${note.hours}h ${note.minutes}m`
     };
 
-    axios.post("http://localhost:3001/notes", noteData)
+    axios.post("http://localhost:8080/notes", noteData)
       .then((response) => {
         addNote(response.data);
 
