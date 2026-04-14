@@ -25,4 +25,11 @@ public class GlobalExceptionHandler {
 		});
 		return errors;
 	}
+
+	@ExceptionHandler(IllegalStateException.class)
+	public Map<String, String> handleIllegalState(IllegalStateException ex) {
+		Map<String, String> error = new HashMap<>();
+		error.put("error", ex.getMessage());
+		return error;
+	}
 }

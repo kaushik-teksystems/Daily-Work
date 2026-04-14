@@ -18,7 +18,7 @@ function App() {
   });
 
   useEffect(() => {
-    axios.get("http://localhost:3001/notes")
+    axios.get("http://localhost:8080/notes")
       .then(response => setNotes(response.data))
       .catch(err => console.error("Could not fetch notes: ", err));
   }, []);
@@ -47,7 +47,7 @@ function App() {
   };
 
   const toggleComplete = (id) => {
-    axios.put(`http://localhost:3001/notes/${id}`, { status: "closed" })
+    axios.put(`http://localhost:8080/notes/${id}`, { status: "closed" })
       .then(() => {
         setNotes(notes.map(n => n.id === id ? { ...n, status: "closed" } : n));
       })
@@ -69,7 +69,7 @@ function App() {
       message: "Are you sure you want to remove this note?",
       type: "confirm",
       onConfirm: () => {
-        axios.delete(`http://localhost:3001/notes/${id}`)
+        axios.delete(`http://localhost:8080/notes/${id}`)
           .then(() => {
             setNotes(notes.filter((n) => n.id !== id));
             closeModal();
