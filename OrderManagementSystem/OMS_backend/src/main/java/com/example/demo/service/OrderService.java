@@ -25,14 +25,13 @@ public class OrderService implements IOrderService {
 	}
 
 	public Integer addOrder(Order order) {
+		if (order.getOrderLines() == null || order.getOrderLines().isEmpty()) {
+			throw new IllegalArgumentException("Order must have at least one item");
+		}
+
+		order.getOrderLines().forEach(line -> line.setOrder(order));
 		order.setStatus("CREATED");
 		order.setCreatedAt(LocalDateTime.now());
-
-		if (order.getOrderLines() != null) {
-			for (OrderLine line : order.getOrderLines()) {
-				line.setOrder(order);
-			}
-		}
 
 		orderRepository.save(order);
 		return order.getId();

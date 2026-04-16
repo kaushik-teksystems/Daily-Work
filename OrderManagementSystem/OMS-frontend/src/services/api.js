@@ -5,3 +5,4 @@ const API = axios.create({
 });
 
 export const createOrder = (data) => API.post("/order", data);
+export const getOrders = () => API.get("/order");

@@ -4,9 +4,36 @@ body {
   background: #f5f7fb;
 }
 
+.navbar {
+  display: flex;
+  padding: 12px 30px;
+  background: #2563eb;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.nav-link {
+  color: white;
+  text-decoration: none;
+  margin-right: 20px;
+  padding: 8px 12px;
+  border-radius: 6px;
+  transition: background 0.2s;
+}
+
+.nav-link:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.nav-link.active {
+  background: white;
+  color: #2563eb;
+  font-weight: 600;
+}
+
 .main {
   display: flex;
-  height: 100vh;
+  height: calc(100vh - 58px);
+  overflow: hidden;
 }
 
 .left {
@@ -150,4 +177,39 @@ h2 {
   color: white;
   border: none;
   border-radius: 6px;
+}
+
+.table-container {
+  max-height: 300px;
+  overflow-y: auto;
+}
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.table th,
+.table td {
+  border: 1px solid #e5e7eb;
+  padding: 12px;
+  text-align: left;
+}
+.table th {
+  background: #f3f4f6;
+  font-weight: 600;
+}
+
+.clickable {
+  cursor: pointer;
+  color: #2563eb;
+  font-weight: 600;
+}
+
+.clickable:hover {
+  text-decoration: underline;
+}
+
+.modal-box.large {
+  width: 600px;
+  max-height: 80vh;
+  overflow-y: auto;
 }

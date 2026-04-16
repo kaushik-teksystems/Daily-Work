@@ -10,6 +10,9 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
 
 @Entity
 public class OrderLine {
@@ -18,8 +21,11 @@ public class OrderLine {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
+	@NotBlank(message = "Product name is required")
 	private String product;
+	@Min(value = 1, message = "Quantity must be >= 1")
 	private int quantity;
+	@DecimalMin(value = "0.0", message = "Price must be >= 0")
 	private BigDecimal price;
 	
 	@ManyToOne
